@@ -1,0 +1,47 @@
+class SimpleCli
+  def login(tries = 3)
+    count = 0
+    begin
+      p "Please enter your email."
+      email = gets.chomp
+      raise StandardError unless User.exists?(email: email)
+      @user = User.where(email: email)
+
+      rescue
+      p "Email not found"
+      count += 1
+      puts "#{tries - count} attempts remain"
+      retry unless count == tries
+      puts "NOPE!"
+      exit
+    end
+  end
+
+  def get_user_action
+    puts "Do you wish to (V)isit a url or (C)reate one"
+    input = gets.chomp.downcase
+    action_idx = input =~ /[vc]/
+    raise StandardError unless action_idx
+    return input[action_idx].to_sym
+  rescue
+    puts "Please, please, please, select either (V)isit or (C)reate"
+    retry
+  end
+
+  def create_url
+    url = gets.chomp
+    ShortenedUrl.create_for_user_and_long_url!(@user, url)
+  end
+
+  def visit_url
+    url = gets.chomp
+    url_obj = ShortenedUrl.create_for_user_and_long_url!(@user, url)
+    Visit.record_visit!(@user, url_obj)
+    system('curl #{url}')
+  end
+
+end
+
+simple_cli = SimpleCli.new
+simple_cli.login
+simple_cli.get_user_action == :v ? simple_cli.visit_url : simple_cli.create_url
