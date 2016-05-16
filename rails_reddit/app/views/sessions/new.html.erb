@@ -1,0 +1,4 @@
+<h2>Login</h2>
+ <p><%= flash[:login_error] %></p>
+ <%= link_to("create new user", new_user_url) %>
+<%=render "users/form", new_user: false, user: @user%>

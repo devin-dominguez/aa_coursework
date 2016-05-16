@@ -1,0 +1,21 @@
+<!-- check if the sub exists on the databse -->
+<% action = (sub.persisted?) ? sub_url(sub) : subs_url %>
+<% method = (sub.persisted?) ? "PATCH" : "POST" %>
+<% button = (sub.persisted?) ? "Update Sub" : "Create Sub" %>
+
+<form action="<%= action %>" method="Post">
+  <!-- Hidden Input Needed for methods other than "post" and "get" (HTTP can't send these other methods) -->
+  <input name="_method" type="hidden" value="<%=method%>">
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+
+  <label for="title">Title</label>
+  <input type="text" id="title" name="sub[title]" value="<%=sub.title%>">
+  <br>
+  <br>
+  <label for="description">Description</label>
+  <textarea name="sub[description]" id="description" ><%=sub.description%></textarea>
+  <br>
+  <input type="submit" value="<%= button %>">
+</form>

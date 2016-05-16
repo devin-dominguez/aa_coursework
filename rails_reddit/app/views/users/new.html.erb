@@ -1,0 +1,4 @@
+<h2>Sign Up</h2>
+<%=show_errors(:sign_up_errors)%>
+<%= link_to("Login in Page",new_session_url)  %>
+<%=render "users/form", new_user: true, user: @user%>
