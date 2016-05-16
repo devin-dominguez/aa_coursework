@@ -1,0 +1,7 @@
+load 'model_base.rb'
+load 'question_follows.rb'
+load 'question_likes.rb'
+load 'questions_database.rb'
+load 'questions.rb'
+load 'replies.rb'
+load 'user.rb'
