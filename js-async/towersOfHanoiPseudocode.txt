@@ -1,0 +1,7 @@
+HanoiGame.prototype.run = function () {
+  // until stacks are on other peg
+    // get input from user
+    // check that move is valid
+      // valid -> make move
+      // invalid -> re-prompt player
+};
