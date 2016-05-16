@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>99 Cats!</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <header>
+    <% if current_user %>
+      <h3><%= current_user.user_name %></h3>
+      <%= button_to("Log Out", session_url, method: "delete") %>
+    <% else %>
+      <%= button_to("Log In", new_session_url, method: "get") %>
+    <% end %>
+  </header>
+
+<%= yield %>
+
+</body>
+</html>

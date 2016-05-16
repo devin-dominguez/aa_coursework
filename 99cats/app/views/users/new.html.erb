@@ -1,0 +1,5 @@
+<h1> Sign Up! </h1>
+<%= render partial: "form", locals: { user: @user, log_in: false } %>
+
+<br>
+<%= link_to("Have an account?", new_session_url) %>

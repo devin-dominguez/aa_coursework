@@ -1,0 +1,4 @@
+<h1> Sign In! </h1>
+<%= render partial: "users/form", locals: { user: @user, log_in: true } %>
+<br>
+<%= link_to("New User", new_user_url) %>
