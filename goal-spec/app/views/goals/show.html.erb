@@ -1,0 +1,12 @@
+<h1><%= @goal.body %></h1>
+
+<h3>Comments for <%= @goal.body %></h3>
+<ul>
+  <% @goal.goal_comments.each do |comment| %>
+    <li><%= comment.body %> - <%= comment.author.username %></li>
+  <% end %>
+</ul>
+<% if current_user %>
+  <h3>Add Comment</h3>
+  <%= render "comments/form", for_user: false %>
+<% end %>

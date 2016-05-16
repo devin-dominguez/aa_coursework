@@ -1,0 +1,35 @@
+<h1><%= @user.username %></h1>
+
+<% goals = @user.goals %>
+
+<h2>Public Goals</h2>
+<ul>
+  <% goals.each do |goal| %>
+    <% unless goal.private %>
+      <li><%= link_to goal.body, goal_url(goal) %></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<% if @own_page %>
+  <h2>Private Goals</h2>
+  <ul>
+    <% goals.each do |goal| %>
+      <% if goal.private %>
+        <li><%= link_to goal.body, goal_url(goal) %></li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
+
+<h3>Comments</h3>
+<ul>
+  <% @user.user_comments.each do |comment| %>
+    <li><%= comment.body %> - <%= comment.author.username %></li>
+  <% end %>
+</ul>
+
+<% if current_user %>
+  <h3>Add Comment</h3>
+  <%= render "comments/form", for_user: true %>
+<% end %>

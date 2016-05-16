@@ -1,0 +1,5 @@
+<% action = for_user ?  user_comments_url(@user) : goal_goal_comments_url(@goal) %>
+<form action="<%= action %>" method="post">
+  <textarea name="comment[body]" rows="8" cols="40" id="comment"></textarea>
+  <input type="submit" value="Add Comment">
+</form>
